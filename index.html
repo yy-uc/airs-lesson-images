@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AIRS Lesson Images -- Click to Copy URL</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+  background: #faf8f5;
+  color: #1f2937;
+  margin: 0;
+  padding: 24px 32px 64px;
+}
+header {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid #c1272d;
+}
+header h1 {
+  font-size: 22px;
+  margin: 0 0 6px;
+  color: #1f2937;
+}
+header p {
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+main { max-width: 1100px; margin: 0 auto; }
+section.lesson {
+  margin: 28px 0 18px;
+}
+section.lesson > h2 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c1272d;
+  margin: 0 0 10px;
+  padding: 6px 0 4px;
+  border-bottom: 1px solid #e5e0d8;
+}
+section.lesson > h2 .title {
+  color: #1f2937;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #e5e0d8;
+  border-radius: 6px;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, transform 0.06s;
+}
+.row:hover {
+  background: #fff8f3;
+  border-color: #c1272d;
+}
+.row:active { transform: scale(0.998); }
+.row.copied {
+  background: #e8f5e9 !important;
+  border-color: #2e7d32 !important;
+}
+.row img {
+  width: 96px;
+  height: 64px;
+  object-fit: cover;
+  border: 1px solid #c8c8c8;
+  border-radius: 3px;
+  background: #f4f0eb;
+  flex-shrink: 0;
+}
+.row .meta {
+  flex: 1;
+  min-width: 0;
+}
+.row .filename {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 3px;
+  word-break: break-all;
+}
+.row .url {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 11.5px;
+  color: #6b7280;
+  margin: 0;
+  word-break: break-all;
+}
+.row .url .domain { color: #1565c0; }
+.row .status {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+  flex-shrink: 0;
+  min-width: 56px;
+  text-align: right;
+}
+.row.copied .status { color: #2e7d32; }
+footer {
+  max-width: 1100px;
+  margin: 40px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid #e5e0d8;
+  color: #6b7280;
+  font-size: 12px;
+}
+footer code {
+  background: #f4f0eb;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AIRS Lesson Images -- click any row to copy its URL</h1>
+  <p>Paste the URL into Thinkific's <em>Insert Image by URL</em> field. Thinkific re-hosts the image on <code>files.cdn.thinkific.com</code> automatically.</p>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  Source repo: <a href="https://github.com/yy-uc/airs-lesson-images">github.com/yy-uc/airs-lesson-images</a>.
+  Filename convention: <code>m&lt;module&gt;_l&lt;lesson&gt;_&lt;description&gt;.&lt;ext&gt;</code>.
+</footer>
+
+<script>
+const BASE = "https://yy-uc.github.io/airs-lesson-images";
+
+const lessons = [
+  { code: "M0_L01", title: "DJI Terra Install (Windows)", images: [
+    { file: "module_0/m0_l01_terra_home_page.jpg",      where: "Step 1: enterprise.dji.com downloads page" },
+    { file: "module_0/m0_l01_terra_create_project.jpg", where: "First Launch: Project Type dialog (LiDAR Point Cloud clickable)" },
+  ]},
+  { code: "M0_L02", title: "Global Mapper Pro Install (Windows)", images: [
+    { file: "module_0/m0_l02_mapper_home_page.jpg",                where: "Step 1: Blue Marble trial form" },
+    { file: "module_0/m0_l02_mapper_load_las.jpg",                 where: "First Launch: Lidar Load Options dialog" },
+    { file: "module_0/m0_l02_mapper_las_3d.jpg",                   where: "First Launch: point cloud renders in 3D view" },
+    { file: "module_0/m0_l02_mapper_color_by_classification.jpg",  where: "First Launch: title bar = 'Global Mapper Pro' + Color by Classification" },
+  ]},
+  { code: "M0_L03", title: "REDtoolbox Install (Windows)", images: [
+    { file: "module_0/m0_l03_red_home_page.jpg",              where: "Step 1: redcatch.at homepage" },
+    { file: "module_0/m0_l03_red_main_select_merge_tool.jpg", where: "Step 9: dashboard with RINEX merge tool highlighted" },
+    { file: "module_0/m0_l03_red_merge_tool_interface.jpg",   where: "Step 9: Merge Tool interface" },
+  ]},
+  { code: "M0_L04", title: "RTKLIB (rtkconv) Install (Windows)", images: [
+    { file: "module_0/m0_l04_rtk_home_page.jpg",   where: "Step 1: rtklib.com homepage" },
+    { file: "module_0/m0_l04_rtk_github_page.jpg", where: "Step 2/3: GitHub repo + Copy permalink" },
+    { file: "module_0/m0_l04_rtk_downloading.jpg", where: "Step 4: PowerShell Invoke-WebRequest" },
+    { file: "module_0/m0_l04_rtk_main.jpg",        where: "Step 8: RTKCONV main window after launch" },
+  ]},
+];
+
+const app = document.getElementById("app");
+
+for (const lesson of lessons) {
+  const section = document.createElement("section");
+  section.className = "lesson";
+  section.innerHTML = `<h2>${lesson.code}<span class="title">${lesson.title}</span></h2>`;
+  for (const img of lesson.images) {
+    const url = `${BASE}/${img.file}`;
+    const fname = img.file.split("/").pop();
+    const row = document.createElement("div");
+    row.className = "row";
+    row.dataset.url = url;
+    row.innerHTML = `
+      <img src="${url}" alt="" loading="lazy">
+      <div class="meta">
+        <p class="filename">${fname}</p>
+        <p class="url"><span class="domain">${BASE}/</span>${img.file}</p>
+        <p class="url" style="margin-top:3px;color:#9ca3af;">${img.where}</p>
+      </div>
+      <div class="status">click to copy</div>
+    `;
+    row.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(url);
+        row.classList.add("copied");
+        row.querySelector(".status").textContent = "copied!";
+        setTimeout(() => {
+          row.classList.remove("copied");
+          row.querySelector(".status").textContent = "click to copy";
+        }, 1500);
+      } catch (e) {
+        // Fallback for old browsers / non-https contexts
+        const ta = document.createElement("textarea");
+        ta.value = url;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        row.classList.add("copied");
+        row.querySelector(".status").textContent = "copied!";
+        setTimeout(() => {
+          row.classList.remove("copied");
+          row.querySelector(".status").textContent = "click to copy";
+        }, 1500);
+      }
+    });
+    section.appendChild(row);
+  }
+  app.appendChild(section);
+}
+</script>
+
+</body>
+</html>
