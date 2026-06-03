@@ -77,7 +77,7 @@ module_titles = {
     "module_8": "Module 8 -- LiDAR to GIS Deliverables",
     "module_9": "Module 9 -- Capstone & Final",
     "patch1": "Patch 1 -- Baseline-recovered images (M1/M3/M7/M8)",
-    "patch2": "Patch 2 -- M_3_L_01 baseline-recovered images",
+    "patch2": "Patch 2 -- M_3_L_01 + remaining M7/M8 baseline-recovered images",
 }
 
 modules = sorted(
@@ -89,6 +89,11 @@ for patch_name in ("patch1", "patch2"):
     pd = REPO / patch_name
     if pd.exists() and pd.is_dir():
         modules.append(pd)
+# clean up any old patch3 dir if it still exists
+old_p3 = REPO / "patch3"
+if old_p3.exists() and old_p3.is_dir():
+    import shutil
+    shutil.rmtree(old_p3)
 
 lesson_re = re.compile(r"^(m\d+_l\d+)_(.+)$")
 
