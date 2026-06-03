@@ -76,12 +76,18 @@ module_titles = {
     "module_7": "Module 7 -- GNSS Post-Processing",
     "module_8": "Module 8 -- LiDAR to GIS Deliverables",
     "module_9": "Module 9 -- Capstone & Final",
+    "patch1": "Patch 1 -- Baseline-recovered images (M1/M3/M7/M8)",
 }
 
 modules = sorted(
     [p for p in REPO.iterdir() if p.is_dir() and p.name.startswith("module_")],
     key=lambda p: int(p.name.split("_")[1])
 )
+# patch1 sits at the end as a separate "module"
+patch1_dir = REPO / "patch1"
+if patch1_dir.exists() and patch1_dir.is_dir():
+    modules.append(patch1_dir)
+
 lesson_re = re.compile(r"^(m\d+_l\d+)_(.+)$")
 
 data = []
