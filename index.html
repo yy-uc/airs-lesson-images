@@ -1923,8 +1923,7 @@ for (const mod of DATA) {
   modCopy.addEventListener("click", async (e) => {
     e.stopPropagation();
     const urls = mod.lessons.flatMap(l => l.images.map(i => urlFor(i.file)));
-    await copyText(urls.join("
-"));
+    await copyText(urls.join("\n"));
     flashCopied(modCopy, modCopy.textContent);
   });
   modHdr.appendChild(modCopy);
@@ -1942,8 +1941,7 @@ for (const mod of DATA) {
     lessonCopy.addEventListener("click", async (e) => {
       e.stopPropagation();
       const urls = lesson.images.map(i => urlFor(i.file));
-      await copyText(urls.join("
-"));
+      await copyText(urls.join("\n"));
       flashCopied(lessonCopy, lessonCopy.textContent);
     });
     hdr.appendChild(lessonCopy);
